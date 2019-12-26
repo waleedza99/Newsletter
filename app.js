@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const fs = require('fs');
 var request = require('request');
 
 const app = express();
@@ -31,12 +32,14 @@ app.post("/", function(req, res) {
   };
 
   var jsonData = JSON.stringify(data);
+  var API_Key = fs.readFileSync(__dirname + '/APIKey.txt', {encoding: "utf-8"});
+  var ListID = fs.readFileSync(__dirname + '/listId.txt', {encoding: "utf-8"});
 
   var options = {
-    url: "https://us4.api.mailchimp.com/3.0/lists/6d16a3d2b0",
+    url: "https://us4.api.mailchimp.com/3.0/lists/" + ListID,
     method: "POST",
     headers: {
-      "Authorization": "waleed1 b5f78fcb77f25e3ff2050ce004a42350-us4"
+      "Authorization": "waleed1 " + API_Key
     },
     body: jsonData
   };
@@ -65,8 +68,3 @@ app.post("/failure", function(req, res){
 app.listen(process.env.PORT || 3000, function() {
   console.log("The server is running on port 3000");
 });
-
-//API Key
-// b5f78fcb77f25e3ff2050ce004a42350-us4
-//List ID
-// 6d16a3d2b0
