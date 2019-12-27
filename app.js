@@ -19,6 +19,7 @@ app.post("/", function(req, res) {
   var firstName = req.body.fName;
   var lastName = req.body.lName;
   var email = req.body.email;
+  var checkEmail = true;
 
   var data = {
     members: [{
@@ -32,27 +33,58 @@ app.post("/", function(req, res) {
   };
 
   var jsonData = JSON.stringify(data);
-  var API_Key = fs.readFileSync(__dirname + '/APIKey.txt', {encoding: "utf-8"});
-  var ListID = fs.readFileSync(__dirname + '/listId.txt', {encoding: "utf-8"});
+  var API_Key = fs.readFileSync(__dirname + '/APIKey.txt', {
+    encoding: "utf-8"
+  });
+  var ListID = fs.readFileSync(__dirname + '/listId.txt', {
+    encoding: "utf-8"
+  });
 
-  var options = {
-    url: "https://us4.api.mailchimp.com/3.0/lists/" + ListID,
-    method: "POST",
+  var audienceOptions = {
+    url: "https://us4.api.mailchimp.com/3.0/lists/" + ListID + "/members",
+    method: "GET",
     headers: {
       "Authorization": "waleed1 " + API_Key
-    },
-    body: jsonData
+    }
   };
 
-  request(options, function(error, response, body) {
+  request(audienceOptions, function(error, response, body) {
     if (error) {
-      res.sendFile(__dirname + "/failure.html");
+      console.log(error);
     } else {
-      if (response.statusCode === 200) {
-        res.sendFile(__dirname + "/success.html");
-      } else {
-        res.sendFile(__dirname + "/failure.html");
+      var results = JSON.parse(body);
+      for (i = 0; i < results.members.length; i++) {
+        if (results.members[i].email_address === email) {
+          checkEmail = false;
+          res.sendFile(__dirname + "/failure2.html");
+        }
       }
+
+      if (checkEmail) {
+
+        var options = {
+          url: "https://us4.api.mailchimp.com/3.0/lists/" + ListID,
+          method: "POST",
+          headers: {
+            "Authorization": "waleed1 " + API_Key
+          },
+          body: jsonData
+        };
+
+        request(options, function(error, response, body) {
+          if (error) {
+            res.sendFile(__dirname + "/failure.html");
+          } else {
+            if (response.statusCode === 200) {
+              res.sendFile(__dirname + "/success.html");
+            } else {
+              res.sendFile(__dirname + "/failure.html");
+            }
+          }
+
+        });
+      }
+
     }
 
   });
@@ -60,7 +92,7 @@ app.post("/", function(req, res) {
 
 });
 
-app.post("/failure", function(req, res){
+app.post("/failure", function(req, res) {
   res.redirect("/");
 });
 

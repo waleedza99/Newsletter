@@ -3,7 +3,7 @@ body {
   height: 100%;
 }
 
-body {
+.text-center {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -11,13 +11,26 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  padding-bottom: 148px;
+}
+
+footer{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-color: #e5e4cc;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
 }
 
 .form-signin {
   width: 100%;
   max-width: 350px;
   padding: 15px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: 6.5%;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -51,5 +64,9 @@ body {
 
 #btn {
   background-color: #5ca0d3;
+}
 
+.mailchimp{
+  height: 75px;
+  width: 74px;
 }

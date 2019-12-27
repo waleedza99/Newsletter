@@ -13,7 +13,8 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:500&display=swap" rel="stylesheet">
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -45,18 +46,26 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
-  <form action="/" class="form-signin" method="post">
-    <img class="mb-4" src="images/logo.png" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Signup to My Newsletter!</h1>
+<body>
+  <div class="text-center">
+    <form action="/" class="form-signin" method="post">
+      <img class="mb-4" src="images/logo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Signup to My Newsletter!</h1>
 
-    <input type="text" name="fName" class="form-control top" placeholder="First Name" required autofocus>
-    <input type="text" name="lName" class="form-control middle" placeholder="Last Name" required>
-    <input type="email" name="email" class="form-control bottom" placeholder="Email" required>
+      <input type="text" name="fName" class="form-control top" placeholder="First Name" required autofocus>
+      <input type="text" name="lName" class="form-control middle" placeholder="Last Name" required>
+      <input type="email" name="email" class="form-control bottom" placeholder="Email" required>
 
-    <button id="btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign Me Up!</button>
-    <p class="mt-5 mb-3 text-muted">&copy; Waleed Zafar</p>
-  </form>
+      <button id="btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign Me Up!</button>
+      <p class="mt-5 mb-3 text-muted">&copy; Waleed Zafar</p>
+    </form>
+  </div>
+  <div class="">
+    <footer>
+      <p><i>Powered by</i></p>
+      <img class="mailchimp" src="images/mailchimp.png" alt="Mailchimp">
+    </footer>
+  </div>
 </body>
 
 </html>
